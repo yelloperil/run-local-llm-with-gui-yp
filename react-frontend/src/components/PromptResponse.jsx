@@ -12,9 +12,9 @@ const PromptResponse = () => {
     let fullResponse = "";
 
     try {
-      const ngrok = "https://a5e9-135-0-165-43.ngrok-free.app"; 
+      const ngrok = '8601'
       const response = await fetch(
-        `${ngrok}/generate`,
+        `https://${ngrok}-135-0-165-43.ngrok-free.app/generate`, 
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
