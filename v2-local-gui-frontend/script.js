@@ -6,7 +6,7 @@ async function getPrediction(prompt) {
   
   try {
     
-    const response = await fetch('/generate', {
+    const response = await fetch('/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
