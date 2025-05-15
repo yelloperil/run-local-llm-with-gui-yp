@@ -6,7 +6,7 @@ async function getPrediction(prompt) {
   
   try {
     
-    const response = await fetch('/generate', {
+    const response = await fetch('/predict', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })

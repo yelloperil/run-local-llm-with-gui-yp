@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Use the completion endpoint for a complete response
 const OLLAMA_API = 'http://localhost:11434/api/chat';
 
 app.post('/predict', async (req, res) => {

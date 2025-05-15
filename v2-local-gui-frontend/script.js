@@ -5,8 +5,7 @@ async function getPrediction(prompt) {
   let fullResponse = '';
   
   try {
-    
-    const response = await fetch('/chat', {
+    const response = await fetch('/predict', {  // Change '/chat' to '/predict'
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
@@ -42,9 +41,7 @@ async function getPrediction(prompt) {
           const jsonData = JSON.parse(eventData);
           
           if (jsonData.response) {
-            
             fullResponse += jsonData.response;
-            
             responseDiv.innerHTML = `<strong>Response:</strong> ${fullResponse}`;
           }
         } catch (err) {
