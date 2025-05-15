@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Ollama API endpoint
 const OLLAMA_API = 'http://localhost:11434/api';
 
 app.post('/generate', async (req, res) => {
@@ -20,12 +19,10 @@ app.post('/generate', async (req, res) => {
   try {
     console.log(`Sending prompt to Ollama: "${prompt}"`);
     
-    // Set headers for SSE (Server-Sent Events)
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
     
-    // Make a request to Ollama API with responseType: 'stream'
     const response = await axios.post(`${OLLAMA_API}/generate`, {
       // model: 'tinyllama',
       // model: 'qwen2.5-coder',
@@ -49,11 +46,9 @@ app.post('/generate', async (req, res) => {
     
     console.log('Stream connected to Ollama');
     
-    // Pipe the response stream directly to our response
     response.data.on('data', (chunk) => {
       const chunkStr = chunk.toString();
       try {
-        // Send each chunk as a SSE event
         res.write(`data: ${chunkStr}\n\n`);
       } catch (error) {
         console.error('Error processing chunk:', error);
@@ -62,7 +57,6 @@ app.post('/generate', async (req, res) => {
     
     response.data.on('end', () => {
       console.log('Stream ended');
-      // Send a final event signaling the end of the stream
       res.write('data: [DONE]\n\n');
       res.end();
     });
