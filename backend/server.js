@@ -24,19 +24,17 @@ app.post('/generate', async (req, res) => {
     res.setHeader('Connection', 'keep-alive');
     
     const response = await axios.post(`${OLLAMA_API}/generate`, {
-      // model: 'tinyllama',
-      // model: 'qwen2.5-coder',
-      model: 'phi4-mini',
       // model: 'phi4-mini-reasoning',
+      model: 'tinyllama',
+      // model: 'tinyllama:1.1b-chat-v1-q4_K_M',
+      // model: 'phi4-mini',
+      // model: 'qwen2.5-coder',
       // model: 'deepseek-r1:1.5b',
       // model: 'tinyllama:1.1b-chat-v1-q5_K_S',
-      // model: 'codellama:7b-instruct-q4_0',
       // model: 'tinyllama:1.1b-chat-v1-q3_K_L',
-      // model: 'tinyllama:1.1b-chat-v1-q4_K_M',
       // model: 'phi3.5',
       // model: 'deepseek-r1:7b',
       // model: 'smollm:1.7b',
-      // model: '',
       prompt: prompt,
       stream: true // Enable streaming
     }, { 
